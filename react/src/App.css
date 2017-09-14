@@ -1,4 +1,4 @@
-body, .App {
+body, #root {
   background-color: rgb(0, 121, 191);
   /*font-family: 'Open Sans', sans-serif;*/
   position: relative;
@@ -6,7 +6,7 @@ body, .App {
   line-height: 18px;
 }
 
-#surface, body, html, .App {
+#surface, body, html, #root {
   height: 100%;
 }
 
