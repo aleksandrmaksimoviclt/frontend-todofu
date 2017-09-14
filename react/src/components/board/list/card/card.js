@@ -10,7 +10,7 @@ class Card extends React.Component {
           x
         </span>
         <div className="list-card-details">
-          <span className="list-card-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed accumsan lacus quis est fringilla rhoncus. Cras ac sapien arcu. Cras a elementum ex, a pharetra ante.</span>
+          <span className="list-card-title">{this.props.title}</span>
         </div>
       </a>
     );
