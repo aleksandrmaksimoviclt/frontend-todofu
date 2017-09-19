@@ -30,9 +30,13 @@
   padding: 4px;
   position: absolute;
   right: 3px;
-  top: 3px;
+  top: 4px;
   visibility: hidden;
   z-index: 40;
+}
+
+.list-card:hover .list-card-operation {
+  visibility: visible;
 }
 
 .list-card-details {

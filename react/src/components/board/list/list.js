@@ -22,6 +22,7 @@ export default class List extends React.Component {
               return (
                 <Card
                   key={card.id}
+                  id={card.id}
                   title={card.title}
                 />
               );

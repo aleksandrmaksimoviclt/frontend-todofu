@@ -30,7 +30,6 @@ export default class CardComposer extends React.Component {
   }
 
   handleSubmitNewCard = (listId) => {
-    const self = this;
     let cardObj = {
       title: this.state.newCardTitle,
       list: listId
@@ -56,7 +55,7 @@ export default class CardComposer extends React.Component {
             <div className="card-composer-controls">
               <div className="card-composer-controls-section">
                 <input onClick={() => this.handleSubmitNewCard(this.props.listId)} className="primary confirm mod-compact" type="submit" value="Add" />
-                <a onClick={() => this.closeCardComposer()} className="fa fa-times icon icon-lg" href="#"></a>
+                <a role="button" onClick={() => this.closeCardComposer()} className="fa fa-times icon icon-lg"></a>
               </div>
             </div>
           </div>

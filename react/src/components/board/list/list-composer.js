@@ -47,7 +47,7 @@ export default class ListComposer extends React.Component {
           <input value={this.state.newListTitle} onChange={this.handleNewListNameChange} className="list-name-input" type="text" name="name" placeholder="Add a list..." autoComplete="off" dir="auto" maxLength="512"></input>
           <div className="list-add-controls">
             <input onClick={() => this.handleSubmitNewList(this.state.newListName)} className="primary confirm mod-compact" type="submit" value="Add" />
-            <a onClick={this.handleListComposerIsOpen.bind(this)} className="fa fa-times icon icon-lg" href="#"></a>
+            <a onClick={() => this.handleListComposerIsOpen} className="fa fa-times icon icon-lg"></a>
           </div>
         </div>
       )
