@@ -55,3 +55,62 @@ textarea.mod-list-name {
 textarea.mod-list-name:focus {
   background-color: rgba(255,255,255,.85);
 }
+
+.open-card-composer {
+  border-radius: 0 0 3px 3px;
+  color: #8c8c8c;
+  display: block;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  padding: 8px 10px;
+  position: relative;
+  text-decoration: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+}
+
+.open-card-composer:hover {
+  background-color: #CDD2D4;
+  color: #4d4d4d;
+  text-decoration: underline;
+}
+
+.list-wrapper.mod-add {
+  height: auto;
+  min-height: 30px;
+  padding: 4px;
+  border-radius: 3px;
+  background-color: #E2E4E6;
+}
+
+.list-wrapper.mod-add.is-idle {
+  background: rgba(0,0,0,.12);
+  cursor: pointer;
+  color: #fff;
+}
+
+.list-wrapper.mod-add.is-idle:hover {
+  background: rgba(0,0,0,.3);
+}
+
+.list-wrapper.mod-add .placeholder {
+  display: block;
+  padding: 7px;
+  color: rgba(255,255,255,.7);
+  -webkit-transition: color 85ms ease-in;
+  transition: color 85ms ease-in;
+}
+
+.list-wrapper.mod-add .list-name-input {
+  background: rgba(0,0,0,.05);
+  border-color: #aaa;
+  box-shadow: inset 0 1px 8px rgba(0,0,0,.15);
+  display: block;
+  margin: 0;
+  -webkit-transition: margin 85ms ease-in,background 85ms ease-in;
+  transition: margin 85ms ease-in,background 85ms ease-in;
+  width: 100%;
+}

@@ -5,6 +5,7 @@ import './board.css';
 
 import BoardHeader from './board-header/board-header.js';
 import List from './list/list.js';
+import ListComposer from './list/list-composer.js'
 
 class Board extends React.Component {
 
@@ -12,17 +13,16 @@ class Board extends React.Component {
     super(props);
 
     this.state = {
-      lists: []
+      lists: [],
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     const self = this;
     axios
       .get("http://api.todofu.com/v1/lists/")
       .then(response => {
         self.setState({ lists: response.data});
-        console.log(response.data);
       });
   }
 
@@ -37,12 +37,14 @@ class Board extends React.Component {
               {this.state.lists.map(function(list){
                 return (
                   <List
+                    id={list.id}
                     key={list.id}
                     name={list.name}
                     cards={list.cards}
                   />
                 );
               })}
+            <ListComposer />
             </div>
           </div>
         </div>
@@ -50,8 +52,5 @@ class Board extends React.Component {
     );
   }
 }
-
-
-
 
 export default Board;
