@@ -1,0 +1,114 @@
+body, #root {
+  background-color: rgb(0, 121, 191);
+  /*font-family: 'Open Sans', sans-serif;*/
+  position: relative;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+#surface, body, html, #root {
+  height: 100%;
+}
+
+#surface {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+body, button, html, input, select, textarea {
+  color: #333;
+  font: 14px "Helvetica Neue",Arial,Helvetica,sans-serif;
+  line-height: 18px;
+  font-weight: 400;
+}
+
+
+textarea {
+  color: #4d4d4d;
+  font: 14px sans-serif;
+  line-height: 18px;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  background-color: #E2E4E6;
+  border: 1px solid #CDD2D4;
+  border-radius: 3px;
+  display: block;
+  margin-bottom: 9pt;
+  min-height: 2pc;
+  padding: 7px;
+  resize: vertical;
+  -webkit-transition: background 85ms ease-in,border-color 85ms ease-in;
+  transition: background 85ms ease-in,border-color 85ms ease-in;
+  width: 100%;
+}
+
+input:not([type=file]), textarea {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  background-color: #E2E4E6;
+  border: 1px solid #CDD2D4;
+  border-radius: 3px;
+  display: block;
+  margin-bottom: 9pt;
+  padding: 7px;
+}
+
+.button, button, input[type=button], input[type=submit] {
+  background: -webkit-linear-gradient(top,#D6DADC 0,#CDD2D4 100%);
+  background: linear-gradient(to bottom,#D6DADC 0,#CDD2D4 100%);
+  border: none;
+  box-shadow: 0 1px 0 #959DA1;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 700;
+  line-height: 22px;
+  margin: 8px 4px 0 0;
+  padding: 5px 1pc;
+  text-align: center;
+}
+
+.button.primary, button.primary, input[type=button].primary, input[type=submit].primary {
+  background: #5AAC44;
+  box-shadow: 0 1px 0 #519839;
+  color: #fff;
+  -webkit-transition: backgroun .3s ease;
+  transition: background .3s ease;
+}
+
+.button.primary:hover, button.primary:hover, input[type=button].primary:hover, input[type=submit].primary:hover {
+  background: #519839;
+  -webkit-transition: background .3s ease;
+  transition: background .3s ease;
+}
+
+/*Icons*/
+
+.icon {
+  text-decoration: none;
+  vertical-align: middle !important;
+  color: #999;
+  margin: 0px 6px;
+  text-align: center;
+  transition: color .3s ease;
+}
+
+.icon:hover{
+  color: #4d4d4d;
+  transition: color .3s ease;
+}
+
+.icon-lg {
+  height: 30px;
+  font-size: 24px !important;
+  line-height: 27px !important;
+  width: 24px;
+}

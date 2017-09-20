@@ -1,0 +1,50 @@
+.board-header {
+  -webkit-box-flex: 0;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+  height: auto;
+  overflow: hidden;
+  padding: 8px 4px 8px 8px;
+  position: relative;
+  -webkit-transition: padding .1s ease-in;
+  transition: padding .1s ease-in;
+}
+
+.board-header-btn-name {
+  cursor: default;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 30px;
+  padding-left: 4px;
+  text-decoration: none;
+}
+
+.board-header-btn {
+  border-radius: 3px;
+  color: #f6f6f6;
+  cursor: default;
+  float: left;
+  font-size: 18px;
+  height: 30px;
+  line-height: 30px;
+  margin: 0 4px 0 0;
+  overflow: hidden;
+  /*padding-left: 30px;*/
+  position: relative;
+  text-decoration: none;
+}
+
+.board-header-btn:hover {
+  color: #f6f6f6;
+  background: rgba(0,0,0,.12);
+  cursor: pointer;
+}
+
+.board-header-btn-name .board-header-btn-text {
+  padding-left: 6px;
+}
+
+.board-header-btn-text {
+  padding-right: 8px;
+}
