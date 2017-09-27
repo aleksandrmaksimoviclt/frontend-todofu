@@ -3,8 +3,7 @@ import axios from 'axios';
 
 
 export default class CardComposer extends React.Component {
-
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       openedCardComposerID: null,
@@ -14,29 +13,28 @@ export default class CardComposer extends React.Component {
 
   openCardComposer = (listId) => {
     this.setState({
-      openedCardComposerID: listId
+      openedCardComposerID: listId,
     });
   };
 
   closeCardComposer = () => {
     this.setState({
-      openedCardComposerID: null
+      openedCardComposerID: null,
     });
   };
 
   handleNewCardTilteChange = (event) => {
-    console.log(event.target.value);
-    this.setState({newCardTitle: event.target.value});
+    this.setState({ newCardTitle: event.target.value });
   }
 
   handleSubmitNewCard = (listId) => {
-    let cardObj = {
+    const cardObj = {
       title: this.state.newCardTitle,
-      list: listId
-    }
+      list: listId,
+    };
     axios
-      .post("http://api.todofu.com/v1/cards/", cardObj)
-      .then(response => {
+      .post('http://api.todofu.com/v1/cards/', cardObj)
+      .then((response) => {
         this.closeCardComposer();
         window.location.reload();
       });
@@ -49,22 +47,21 @@ export default class CardComposer extends React.Component {
           <div className="card-composer">
             <div className="list-card">
               <div className="list-card-details">
-                <textarea value={this.state.newCardTitle} onChange={this.handleNewCardTilteChange} className="list-card-composer-textarea"></textarea>
+                <textarea value={this.state.newCardTitle} onChange={this.handleNewCardTilteChange} className="list-card-composer-textarea" />
               </div>
             </div>
             <div className="card-composer-controls">
               <div className="card-composer-controls-section">
                 <input onClick={() => this.handleSubmitNewCard(this.props.listId)} className="primary confirm mod-compact" type="submit" value="Add" />
-                <a role="button" onClick={() => this.closeCardComposer()} className="fa fa-times icon icon-lg"></a>
+                <a role="button" onClick={() => this.closeCardComposer()} className="fa fa-times icon icon-lg" />
               </div>
             </div>
           </div>
-      </div>
-      );
-    } else {
-      return (
-        <a onClick={() => this.openCardComposer(this.props.listId)} className="open-card-composer">Add a card...</a>
+        </div>
       );
     }
+    return (
+      <a onClick={() => this.openCardComposer(this.props.listId)} className="open-card-composer">Add a card...</a>
+    );
   }
 }
