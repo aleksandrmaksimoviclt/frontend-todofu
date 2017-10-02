@@ -21,7 +21,9 @@ class Board extends React.Component {
     axios
       .get('http://api.todofu.com/v1/lists/')
       .then((response) => {
-        self.setState({ lists: response.data });
+        if (response.status === 200) {
+          self.setState({ lists: response.data });
+        }
       });
   }
 
