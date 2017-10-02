@@ -48,8 +48,10 @@ export default class List extends React.Component {
 List.propTypes = {
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
-  cards: PropTypes.shape({
-    color: PropTypes.string.isRequired,
-    fontSize: PropTypes.number,
-  }).isRequired,
+  cards: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+    }).isRequired,
+  ).isRequired,
 };
