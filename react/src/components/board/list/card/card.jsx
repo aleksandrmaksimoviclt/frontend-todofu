@@ -1,5 +1,6 @@
 import React from 'react';
 import Axios from 'axios';
+import PropTypes from 'prop-types';
 
 import './card.css';
 
@@ -7,7 +8,7 @@ class Card extends React.Component {
   handleCardDelete = (cardID) => {
     Axios
       .delete(`http://api.todofu.com/v1/cards/${cardID}/`)
-      .then((response) => {
+      .then(() => {
         window.location.reload();
       });
   }
@@ -25,3 +26,8 @@ class Card extends React.Component {
 }
 
 export default Card;
+
+Card.propTypes = {
+  id: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+};

@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 
 export default class CardComposer extends React.Component {
@@ -34,7 +35,7 @@ export default class CardComposer extends React.Component {
     };
     axios
       .post('http://api.todofu.com/v1/cards/', cardObj)
-      .then((response) => {
+      .then(() => {
         this.closeCardComposer();
         window.location.reload();
       });
@@ -53,7 +54,7 @@ export default class CardComposer extends React.Component {
             <div className="card-composer-controls">
               <div className="card-composer-controls-section">
                 <input onClick={() => this.handleSubmitNewCard(this.props.listId)} className="primary confirm mod-compact" type="submit" value="Add" />
-                <a role="button" onClick={() => this.closeCardComposer()} className="fa fa-times icon icon-lg" />
+                <a role="button" tabIndex="0" onClick={() => this.closeCardComposer()} className="fa fa-times icon icon-lg">.s</a>
               </div>
             </div>
           </div>
@@ -61,7 +62,11 @@ export default class CardComposer extends React.Component {
       );
     }
     return (
-      <a onClick={() => this.openCardComposer(this.props.listId)} className="open-card-composer">Add a card...</a>
+      <a role="button" tabIndex="0" onClick={() => this.openCardComposer(this.props.listId)} className="open-card-composer">Add a card...</a>
     );
   }
 }
+
+CardComposer.propTypes = {
+  listId: PropTypes.number.isRequired,
+};
