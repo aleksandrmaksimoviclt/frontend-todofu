@@ -3,13 +3,10 @@ import axios from 'axios';
 
 
 export default class ListComposer extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+    state = {
       listComposerIsOpen: false,
       newListName: '',
     };
-  }
 
   handleListComposerIsOpen = () => {
     this.setState({ listComposerIsOpen: !this.state.listComposerIsOpen });
@@ -35,7 +32,7 @@ export default class ListComposer extends React.Component {
   render() {
     if (!this.state.listComposerIsOpen) {
       return (
-        <div role="button" tabIndex="0" onClick={() => this.handleListComposerIsOpen} className="list-wrapper mod-add is-idle">
+        <div role="button" tabIndex="0" onClick={this.handleListComposerIsOpen} className="list-wrapper mod-add is-idle">
           <span className="placeholder">Add a list...</span>
         </div>
       );

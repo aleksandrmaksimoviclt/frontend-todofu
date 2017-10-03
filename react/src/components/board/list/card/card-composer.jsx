@@ -54,7 +54,7 @@ export default class CardComposer extends React.Component {
             <div className="card-composer-controls">
               <div className="card-composer-controls-section">
                 <input onClick={() => this.handleSubmitNewCard(this.props.listId)} className="primary confirm mod-compact" type="submit" value="Add" />
-                <a role="button" tabIndex="0" onClick={() => this.closeCardComposer()} className="fa fa-times icon icon-lg">.s</a>
+                <a role="button" tabIndex="0" onClick={() => this.closeCardComposer()} className="fa fa-times icon icon-lg">.</a>
               </div>
             </div>
           </div>
