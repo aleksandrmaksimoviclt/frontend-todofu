@@ -21,11 +21,19 @@ const List = props => (
             key={card.id}
             id={card.id}
             title={card.title}
+            listId={props.id}
+            handleCardDelete={props.handleCardDelete}
           />
         ))}
       </div>
       <CardComposer
         listId={props.id}
+        openCardComposer={props.openCardComposer}
+        closeCardComposer={props.closeCardComposer}
+        openedCardComposerID={props.openedCardComposerID}
+        handleNewCardTilteChange={props.handleNewCardTilteChange}
+        newCardTitle={props.newCardTitle}
+        handleSubmitNewCard={props.handleSubmitNewCard}
       />
     </div>
   </div>
@@ -41,6 +49,13 @@ List.propTypes = {
     }).isRequired,
   ).isRequired,
   handleListDelete: PropTypes.func.isRequired,
+  openCardComposer: PropTypes.func.isRequired,
+  closeCardComposer: PropTypes.func.isRequired,
+  openedCardComposerID: PropTypes.number.isRequired,
+  handleNewCardTilteChange: PropTypes.func.isRequired,
+  newCardTitle: PropTypes.string.isRequired,
+  handleSubmitNewCard: PropTypes.func.isRequired,
+  handleCardDelete: PropTypes.func.isRequired,
 };
 
 export default List;

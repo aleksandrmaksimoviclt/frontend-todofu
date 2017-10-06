@@ -12,13 +12,17 @@ const listsURL = 'http://api.todofu.com/v1/lists/';
 class Board extends React.Component {
   state = {
     lists: [],
+    listComposerIsOpen: false,
+    newListName: '',
+    openedCardComposerID: -1,
+    newCardTitle: '',
   };
 
   componentWillMount() {
-    this.loadListsFromApi();
+    this.getListsFromApi();
   }
 
-  loadListsFromApi = () => {
+  getListsFromApi = () => {
     const self = this;
     Axios
       .get(listsURL)
@@ -41,6 +45,103 @@ class Board extends React.Component {
       });
   }
 
+  // ListComposer functions
+  handleListComposerIsOpen = () => {
+    this.setState({ listComposerIsOpen: !this.state.listComposerIsOpen });
+  }
+
+  handlePostNewList = () => {
+    const self = this;
+    const newListName = this.state.newListName;
+    const newList = {
+      name: newListName,
+      cards: [],
+    };
+    Axios
+      .post('http://api.todofu.com/v1/lists/', newList)
+      .then((response) => {
+        if (response.statusText === 'Created' && response.status === 201) {
+          const updatedLists = self.state.lists.concat(response.data);
+          self.setState({
+            lists: updatedLists,
+            newListName: '',
+          });
+        }
+        // provide error handling
+      });
+  }
+  handleNewListNameChange = (event) => {
+    this.setState({ newListName: event.target.value });
+  }
+
+  // Card composer functions
+  openCardComposer = (listId) => {
+    this.setState({
+      openedCardComposerID: listId,
+    });
+  };
+
+  closeCardComposer = () => {
+    this.setState({
+      openedCardComposerID: -1,
+      newCardTitle: '',
+    });
+  };
+
+  handleNewCardTilteChange = (event) => {
+    this.setState({ newCardTitle: event.target.value });
+  };
+
+  handleSubmitNewCard = (listId) => {
+    const self = this;
+    const newCard = {
+      title: this.state.newCardTitle,
+      list: listId,
+    };
+    Axios
+      .post('http://api.todofu.com/v1/cards/', newCard)
+      .then((response) => {
+        if (response.status === 201 && response.statusText === 'Created') {
+          const updatedLists = self.state.lists.map((list) => {
+            if (list.id === listId) {
+              return Object.assign({}, list, {
+                cards: list.cards.concat(response.data),
+              });
+            }
+            return list;
+          });
+          self.setState({
+            lists: updatedLists,
+          });
+          self.closeCardComposer();
+        }
+        // provide error handling
+      });
+  }
+
+  // Card functions
+  handleCardDelete = (listID, cardID) => {
+    const self = this;
+    Axios
+      .delete(`http://api.todofu.com/v1/cards/${cardID}/`)
+      .then((response) => {
+        if (response.status === 204) {
+          const updatedLists = self.state.lists.map((list) => {
+            if (list.id === listID) {
+              return Object.assign({}, list, {
+                cards: list.cards.filter(card => card.id !== cardID),
+              });
+            }
+            return list;
+          });
+          self.setState({
+            lists: updatedLists,
+          });
+        }
+        // provide error handling
+      });
+  }
+
   render() {
     const lists = this.state.lists.map(list => (
       <List
@@ -49,6 +150,13 @@ class Board extends React.Component {
         name={list.name}
         cards={list.cards}
         handleListDelete={this.handleListDelete}
+        openCardComposer={this.openCardComposer}
+        closeCardComposer={this.closeCardComposer}
+        openedCardComposerID={this.state.openedCardComposerID}
+        handleNewCardTilteChange={this.handleNewCardTilteChange}
+        newCardTitle={this.state.newCardTitle}
+        handleSubmitNewCard={this.handleSubmitNewCard}
+        handleCardDelete={this.handleCardDelete}
       />
     ));
     return (
@@ -58,7 +166,13 @@ class Board extends React.Component {
           <div className="board-canvas">
             <div id="board">
               {lists}
-              <ListComposer />
+              <ListComposer
+                handleListComposerIsOpen={this.handleListComposerIsOpen}
+                listComposerIsOpen={this.state.listComposerIsOpen}
+                handlePostNewList={this.handlePostNewList}
+                newListName={this.state.newListName}
+                handleNewListNameChange={this.handleNewListNameChange}
+              />
             </div>
           </div>
         </div>
