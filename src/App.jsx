@@ -1,7 +1,5 @@
 import React from 'react';
 import Axios from 'axios';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.min.css';
 
 import './App.css';
 import './font-awesome-4.7.0/css/font-awesome.css';
@@ -138,11 +136,9 @@ class App extends React.Component {
             lists: updatedLists,
           });
         }
-        this.notify('Deleted');
       });
   }
 
-  notify = text => toast(text);
 
   render() {
     return (
@@ -166,13 +162,6 @@ class App extends React.Component {
             handleCardDelete={this.handleCardDelete}
           />
         </div>
-        <ToastContainer
-          position="top-right"
-          type="default"
-          autoClose={5000}
-          closeOnClick
-          pauseOnHover
-        />
       </div>
     );
   }
