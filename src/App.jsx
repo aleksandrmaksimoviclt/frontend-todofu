@@ -5,7 +5,7 @@ import './App.css';
 import './font-awesome-4.7.0/css/font-awesome.css';
 import Header from './components/header/header';
 import Board from './components/board/board';
-import Toast from './components/toast/toast';
+import ToastContainer from './components/toast/toast-container';
 
 const listsURL = 'http://api.todofu.com/v1/lists/';
 
@@ -16,6 +16,20 @@ class App extends React.Component {
     newListName: '',
     openedCardComposerID: -1,
     newCardTitle: '',
+    toastes: [
+      {
+        id: 0,
+        message: 'hello-0',
+      },
+      {
+        id: 1,
+        message: 'hello-1',
+      },
+      {
+        id: 2,
+        message: 'hello-2',
+      },
+    ]
   };
 
   componentWillMount() {
@@ -163,7 +177,9 @@ class App extends React.Component {
             handleCardDelete={this.handleCardDelete}
           />
         </div>
-        <Toast />
+        <ToastContainer
+          toastes={this.state.toastes}
+        />
       </div>
     );
   }

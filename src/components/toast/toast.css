@@ -1,11 +1,10 @@
-.toast-wrapper {
-  position: absolute;
+.toast-body {
   display: inline-flex;
   align-items: center;
   background-color: #fff;
-  right: 10px;
-  top: 24px;
   padding: 8px;
+  border-radius: 3px;
+  box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
 }
 
 .toast-text {

@@ -1,11 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 
 import './toast.css';
 
-const Toast = prop => (
-  <div className="toast-wrapper">
+const Toast = props => (
+  <div className="toast-body">
     <div className="toast-text">
-      <span>Toasty text</span>
+      <span>{props.toastText}</span>
     </div>
     <div className="toast-action">
       <input className="primary confirm mod-compact" type="submit" value="Undo"></input>
@@ -15,5 +17,9 @@ const Toast = prop => (
     </div>
   </div>
 );
+
+Toast.propTypes = {
+  toastText: PropTypes.string.isRequired,
+}
 
 export default Toast;
