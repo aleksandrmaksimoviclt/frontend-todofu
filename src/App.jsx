@@ -5,6 +5,7 @@ import './App.css';
 import './font-awesome-4.7.0/css/font-awesome.css';
 import Header from './components/header/header';
 import Board from './components/board/board';
+import Toast from './components/toast/toast';
 
 const listsURL = 'http://api.todofu.com/v1/lists/';
 
@@ -162,6 +163,7 @@ class App extends React.Component {
             handleCardDelete={this.handleCardDelete}
           />
         </div>
+        <Toast />
       </div>
     );
   }

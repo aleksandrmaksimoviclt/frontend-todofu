@@ -1,0 +1,20 @@
+.toast-wrapper {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  background-color: #fff;
+  right: 10px;
+  top: 24px;
+  padding: 8px;
+}
+
+.toast-text {
+  font-weight: 700;
+  color: #4d4d4d;
+  padding: 8px 10px;
+  margin-right: 48px;
+}
+
+.toast-close {
+  margin-left: 8px;
+}

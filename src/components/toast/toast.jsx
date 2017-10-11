@@ -1,0 +1,19 @@
+import React from 'react';
+
+import './toast.css';
+
+const Toast = prop => (
+  <div className="toast-wrapper">
+    <div className="toast-text">
+      <span>Toasty text</span>
+    </div>
+    <div className="toast-action">
+      <input className="primary confirm mod-compact" type="submit" value="Undo"></input>
+    </div>
+    <div className="toast-close">
+      <i className="fa fa-times icon" aria-hidden="true"></i>
+    </div>
+  </div>
+);
+
+export default Toast;
