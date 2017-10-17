@@ -42,7 +42,7 @@ class App extends React.Component {
       .then((response) => {
         if (response.status === 204) {
           self.setState({ lists: updatedLists });
-          self.showNewToast(`${list.name} deleted`);
+          self.showNewToast(`Deleted list "${list.name}"`);
         } else {
           self.showNewToast(`Couldn't delete list "${list.name}"`);
         }
@@ -140,7 +140,9 @@ class App extends React.Component {
           self.setState({
             lists: updatedLists,
           });
-          self.showNewToast(`${card.title} deleted`);
+          self.showNewToast(`Deleted card "${card.title}"`);
+        } else {
+          self.showNewToast(`Couldn't delete card "${card.title}"`);
         }
       });
   }
