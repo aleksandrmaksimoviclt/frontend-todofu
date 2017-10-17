@@ -145,12 +145,14 @@ class App extends React.Component {
       });
   }
 
+  // Toast functions
+
   showNewToast = (text) => {
     const currentToastes = this.state.toastes;
     let newToast = {};
     if (currentToastes.length === 0) {
       newToast = {
-        id:0,
+        id: 0,
         message: text,
       }
     } else {
