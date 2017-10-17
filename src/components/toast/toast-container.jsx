@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Toast from './toast';
-
 import './toast-container.css';
 
 const ToastContainer = (props) => {
@@ -10,7 +9,9 @@ const ToastContainer = (props) => {
   const toastes = props.toastes.map(toast => (
     <Toast
       key={toast.id}
-      toastText={toast.message}
+      id={toast.id}
+      message={toast.message}
+      dismissToast={props.dismissToast}
     />
   ));
 
@@ -28,6 +29,7 @@ ToastContainer.propTypes = {
       message: PropTypes.string.isRequired,
     }).isRequired,
   ).isRequired,
+  dismissToast: PropTypes.func.isRequired,
 }
 
 export default ToastContainer;
