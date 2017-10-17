@@ -12,7 +12,7 @@ const List = props => (
       <div className="list-header">
         <textarea defaultValue={props.name} className="list-header-name mod-list-name" />
         <div className="list-header-extras">
-          <a tabIndex={0} role="button" onClick={() => props.handleListDelete(props.id)} className="fa fa-trash-o icon">.</a>
+          <a tabIndex={0} role="button" onClick={() => props.handleListDelete(props)} className="fa fa-trash-o icon">.</a>
         </div>
       </div>
       <div className="list-cards">
