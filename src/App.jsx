@@ -5,6 +5,7 @@ import './App.css';
 import './font-awesome-4.7.0/css/font-awesome.css';
 import Header from './components/header/header';
 import Board from './components/board/board';
+import ToastContainer from './components/toast/toast-container';
 
 const listsURL = 'http://api.todofu.com/v1/lists/';
 
@@ -15,6 +16,7 @@ class App extends React.Component {
     newListName: '',
     openedCardComposerID: -1,
     newCardTitle: '',
+    toastes: [],
   };
 
   componentWillMount() {
@@ -32,14 +34,17 @@ class App extends React.Component {
       });
   }
 
-  handleListDelete = (listID) => {
+  handleListDelete = (list) => {
     const self = this;
-    const updatedLists = this.state.lists.filter(list => list.id !== listID);
+    const updatedLists = this.state.lists.filter(_list => _list.id !== list.id);
     Axios
-      .delete(`http://api.todofu.com/v1/lists/${listID}/`)
+      .delete(`http://api.todofu.com/v1/lists/${list.id}/`)
       .then((response) => {
         if (response.status === 204) {
           self.setState({ lists: updatedLists });
+          self.showNewToast(`Deleted list "${list.name}"`);
+        } else {
+          self.showNewToast(`Couldn't delete list "${list.name}"`);
         }
       });
   }
@@ -118,16 +123,16 @@ class App extends React.Component {
   }
 
   // Card functions
-  handleCardDelete = (listID, cardID) => {
+  handleCardDelete = (card) => {
     const self = this;
     Axios
-      .delete(`http://api.todofu.com/v1/cards/${cardID}/`)
+      .delete(`http://api.todofu.com/v1/cards/${card.id}/`)
       .then((response) => {
         if (response.status === 204) {
           const updatedLists = self.state.lists.map((list) => {
-            if (list.id === listID) {
+            if (list.id === card.listId) {
               return Object.assign({}, list, {
-                cards: list.cards.filter(card => card.id !== cardID),
+                cards: list.cards.filter(_card => _card.id !== card.id),
               });
             }
             return list;
@@ -135,8 +140,41 @@ class App extends React.Component {
           self.setState({
             lists: updatedLists,
           });
+          self.showNewToast(`Deleted card "${card.title}"`);
+        } else {
+          self.showNewToast(`Couldn't delete card "${card.title}"`);
         }
       });
+  }
+
+  // Toast functions
+
+  showNewToast = (text) => {
+    const currentToastes = this.state.toastes;
+    let newToast = {};
+    if (currentToastes.length === 0) {
+      newToast = {
+        id: 0,
+        message: text,
+      }
+    } else {
+      newToast = {
+        id: currentToastes[currentToastes.length-1].id+1,
+        message: text,
+      }
+    }
+    const updatedToastes = currentToastes.concat(newToast);
+    this.setState({
+      toastes: updatedToastes,
+    });
+  }
+
+  dismissToast = (toast) => {
+    const currentToastes = this.state.toastes;
+    const updatedToastes = currentToastes.filter(_toast => _toast.id !== toast.id);
+    this.setState({
+      toastes: updatedToastes,
+    })
   }
 
 
@@ -162,6 +200,10 @@ class App extends React.Component {
             handleCardDelete={this.handleCardDelete}
           />
         </div>
+        <ToastContainer
+          toastes={this.state.toastes}
+          dismissToast={this.dismissToast}
+        />
       </div>
     );
   }

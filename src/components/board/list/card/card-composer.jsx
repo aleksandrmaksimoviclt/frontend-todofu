@@ -13,7 +13,7 @@ const CardComposer = (props) => {
           </div>
           <div className="card-composer-controls">
             <div className="card-composer-controls-section">
-              <input onClick={() => props.handleSubmitNewCard(props.listId)} className="primary confirm mod-compact" type="submit" value="Add" />
+              <input onClick={() => props.handleSubmitNewCard(props.listId)} className="primary confirm" type="submit" value="Add" />
               <a onClick={props.closeCardComposer} role="button" tabIndex="0" className="fa fa-times icon icon-lg">.</a>
             </div>
           </div>
